@@ -29,10 +29,9 @@ services:
       - "logging=true"
     logging: *default-logging
   ipdc-ldes-feed:
-    image: lblod/ldes-serve-feed-service:latest
+    image: lblod/ldes-serve-feed-service:0.2.0
     environment:
       BASE_URL: "http://172.17.0.1/ldes/"
-      LDES_FOLDER: "ipdc-products"
     volumes:
       - ./data/ldes-feed:/data
     restart: always
