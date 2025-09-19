@@ -2,6 +2,10 @@ services:
   identifier:
     ports:
       - "80:80"
-  triplestore:
-    ports:
-      - "8890:8890"
+    restart: "no"
+  dispatcher:
+    restart: "no"
+  ipdc-ldes-import:
+    restart: "no"
+  ipdc-ldes-feed:
+    restart: "no"

@@ -2,7 +2,8 @@ defmodule Dispatcher do
   use Matcher
   define_accept_types [
     html: [ "text/html", "application/xhtml+html" ],
-    json: [ "application/json", "application/vnd.api+json" ]
+    json: [ "application/json", "application/vnd.api+json" ],
+    any: [ "*/*" ]
   ]
 
   @any %{}
@@ -10,6 +11,10 @@ defmodule Dispatcher do
   @html %{ accept: %{ html: true } }
 
   define_layers [ :static, :services, :fall_back, :not_found ]
+
+  get "/ldes/*path", %{ layer: :services, accept: %{ any: true } } do
+    forward conn, path, "http://ipdc-ldes-feed/"
+  end
 
   # In order to forward the 'themes' resource to the
   # resource service, use the following forward rule:
