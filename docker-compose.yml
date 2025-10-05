@@ -21,7 +21,7 @@ services:
       - "logging=true"
     logging: *default-logging
   ipdc-ldes-import:
-    image: lblod/ipdc-ldes-import-service:0.1.0
+    image: lblod/ipdc-ldes-import-service:0.1.1
     volumes:
       - ./data/ldes-feed/ipdc-products:/data
     restart: always
