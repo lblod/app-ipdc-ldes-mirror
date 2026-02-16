@@ -20,18 +20,39 @@ services:
     labels:
       - "logging=true"
     logging: *default-logging
-  ipdc-ldes-import:
-    image: lblod/ipdc-ldes-import-service:0.1.1
+  instancesnapshot-ldes-import:
+    image: lblod/ipdc-ldes-import-service:feature-support-all-ipdc-feeds
     volumes:
-      - ./data/ldes-feed/ipdc-products:/data
+      - ./data/ldes-feed/instancesnapshots:/data
+    restart: always
+    labels:
+      - "logging=true"
+    logging: *default-logging
+  conceptsnapshot-ldes-import:
+    image: lblod/ipdc-ldes-import-service:feature-support-all-ipdc-feeds
+    volumes:
+      - ./data/ldes-feed/conceptsnapshots:/data
+    restart: always
+    labels:
+      - "logging=true"
+    logging: *default-logging
+  feedbacksnapshot-ldes-import:
+    image: lblod/ipdc-ldes-import-service:feature-support-all-ipdc-feeds
+    volumes:
+      - ./data/ldes-feed/feedbacksnapshots:/data
     restart: always
     labels:
       - "logging=true"
     logging: *default-logging
   ipdc-ldes-feed:
-    image: lblod/ldes-serve-feed-service:0.3.0
+    image: lblod/ldes-serve-feed-service:feature-basic-auth
     environment:
-      BASE_URL: "http://172.17.0.1/ldes/"
+      BASE_URL: "http://172.17.0.1/"
+      ENABLE_BASIC_AUTH: true
+      BASIC_AUTH_USERNAME: "<username>"
+      BASIC_AUTH_PASSWORD: "<password>"
+      BASIC_AUTH_FOLDERS: "[\"feedbacksnapshots\"]"
+
     volumes:
       - ./data/ldes-feed:/data
     restart: always

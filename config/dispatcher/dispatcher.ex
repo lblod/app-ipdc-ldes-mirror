@@ -12,7 +12,7 @@ defmodule Dispatcher do
 
   define_layers [ :static, :services, :fall_back, :not_found ]
 
-  get "/ldes/*path", %{ layer: :services, accept: %{ any: true } } do
+  get "/*path", %{ layer: :services, accept: %{ any: true } } do
     forward conn, path, "http://ipdc-ldes-feed/"
   end
 
