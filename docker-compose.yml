@@ -51,7 +51,7 @@ services:
       - "logging=true"
     logging: *default-logging
   ipdc-ldes-feed:
-    image: lblod/ldes-serve-feed-service:feature-basic-auth
+    image: lblod/ldes-serve-feed-service:0.4.0
     environment:
       BASE_URL: "http://172.17.0.1/"
       ENABLE_BASIC_AUTH: true
