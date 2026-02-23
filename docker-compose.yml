@@ -21,7 +21,7 @@ services:
       - "logging=true"
     logging: *default-logging
   instancesnapshot-ldes-import:
-    image: lblod/ipdc-ldes-import-service:0.2.0
+    image: lblod/ipdc-ldes-import-service:0.2.1
     environment:
       IPDC_FEED_URL: <instancesnapshot_feed_url>
     volumes:
@@ -31,7 +31,7 @@ services:
       - "logging=true"
     logging: *default-logging
   conceptsnapshot-ldes-import:
-    image: lblod/ipdc-ldes-import-service:0.2.0
+    image: lblod/ipdc-ldes-import-service:0.2.1
     environment:
       IPDC_FEED_URL: <conceptsnapshot_feed_url>
     volumes:
@@ -41,9 +41,10 @@ services:
       - "logging=true"
     logging: *default-logging
   feedbacksnapshot-ldes-import:
-    image: lblod/ipdc-ldes-import-service:0.2.0
+    image: lblod/ipdc-ldes-import-service:0.2.1
     environment:
       IPDC_FEED_URL: <feedbacksnapshot_feed_url>
+      APPLY_LDES_FEEDBACKSNAPSHOT_FEED_FIX: true
     volumes:
       - ./data/ldes-feed/feedbacksnapshots:/data
     restart: always
