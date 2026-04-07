@@ -46,7 +46,6 @@ services:
     image: lblod/ipdc-ldes-import-service:0.2.1
     environment:
       IPDC_FEED_URL: <feedbacksnapshot_feed_url>
-      APPLY_LDES_FEEDBACKSNAPSHOT_FEED_FIX: true
     volumes:
       - ./data/ldes-feed/feedbacksnapshots:/data
     restart: always
